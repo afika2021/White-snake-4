@@ -1,0 +1,19 @@
+<h2 class="sidebar-title"> Популярные посты </h2>
+
+<div class="grid" >
+	{% for post in posts %}
+		<div class="portfolio-item popular" >
+	        {% if post.photo %}
+                                    <img src="{{ post.photo.url }}" alt="{{ post.title }}" width="300" height="200">
+                                    {% elif post.category.slug == 'python' %}
+                                    <img src="https://xdose.ru/img/python.jpg" alt=" {{ post.title }} ">
+                                    {% else %}
+                                    <img src="https://www.edgica.com/wp-content/files/django-logo-big-1024x640.jpg" alt=" {{ post.title }} ">
+                                    {% endif %}
+	        <div class="portfolio-text">
+	            <h5><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h5>
+	            <p> Автор: {{ post.author }} <span>|</span>{{ post.created_at|date:"d.m.Y" }}</p>
+	        </div>
+	    </div>
+	{% endfor %}
+</div>
